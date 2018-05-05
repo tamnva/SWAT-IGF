@@ -70,7 +70,7 @@
 	write(*,'(3x,a37,f7.5)') "Portion RCHRG_DEEP flows to spring: ",s_ifrac
 
       read(2468, *) slow2fast
-	write(*,'(3x,a37,f7.5)') "Per. water turns to fast rchr: ", slow2fast
+	write(*,'(3x,a37,f7.5)') "Recharge seperation factor: ", slow2fast
 		  
 	read(2468, *) s_num
 	write(*,'(3x,a27,i2)') "Spring hydrograph number: ", s_num
