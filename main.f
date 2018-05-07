@@ -49,7 +49,7 @@
       implicit none
       prog = "SWAT Dec 23 2016    VER 2016/Rev 664"
       write (*,1000)
- 1000 format(1x,"               SWAT2016               ",/,             
+ 1000 format(1x,"               SWAT2016 (V1)          ",/,             
      &          "               Rev. 664               ",/,             
      &          "      Soil & Water Assessment Tool    ",/,             
      &          "               PC Version             ",/,             
