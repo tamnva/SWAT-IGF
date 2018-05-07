@@ -61,9 +61,9 @@
 
       open(2469, file = "output_karst.txt")
       	
-	open(2468, file = "input_karst.txt")
+      open(2468, file = "input_karst.txt")
 
-      read(2468, *) beta_n
+      	read(2468, *) beta_n
 	write(*,'(3x,a37,f7.5)') "Recharge speration factor", beta_n
 		  
 	read(2468, *) s_num
@@ -73,10 +73,10 @@
 	write(*,'(3x,a27,2f8.3)') "conduit & matrix delay : ", fday, sday
 	
 	
-	close(2468)
+      close(2468)
 	
 	  
-	call getallo
+      call getallo
       call allocate_parms
       
       !! initialize parameters
