@@ -4,9 +4,9 @@
       
       !! change by Nguyen
       integer   :: s_num, q26
-      real      :: diffuse_storage, matrix_storage,fday, sday
+      real      :: matrix_storage, conduit_storage,fday, sday
       real      :: re_deep, re_shallow, tstor
-      real      :: qtloss, beta_n, diffuse_recharge, fflow, sflow
+      real      :: qtloss, beta_n, conc_recharge, fflow, sflow
       real, dimension (3)   :: q_delay
       
       real, dimension (:), allocatable :: alph_e

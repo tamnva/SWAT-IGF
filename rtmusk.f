@@ -113,8 +113,8 @@
       integer :: jrch,nn,ii
       real :: xkm, det, yy, c1, c2, c3, c4, wtrin, p, vol, c, rh
       real :: topw,msk1,msk2,detmax,detmin,qinday,qoutday
-	real :: volrt, maxrt, adddep, addp, addarea
-	real :: rttlc1, rttlc2, rtevp1, rtevp2
+	real :: volrt, maxrt, adddep, addp, addarea, inflow1, inflow2
+	real :: rttlc1, rttlc2, rtevp1, rtevp2, sum_rttlc, sum_rtevp
 
       jrch = 0
       jrch = inum1
@@ -124,12 +124,19 @@
       qtloss = 0.
       
       det = 24.
+      sum_rttlc = 0.0
+      sum_rtevp = 0.0
       
 
 !! Water entering reach on day
       wtrin = 0.
       wtrin = varoute(2,inum2) * (1. - rnum1)
-
+      
+      if (jrch == 25) then
+        read (351, *) inflow1, inflow2
+        wtrin = 86400.0 * (inflow1 + inflow2)
+      end if
+      
 !! Compute storage time constant for reach (msk_co1 + msk_co2 = 1.)
 	msk1 = msk_co1 / (msk_co1 + msk_co2)
 	msk2 = msk_co2 / (msk_co1 + msk_co2)
@@ -295,6 +302,7 @@
 	      end if
 	    end if
 	  rttlc = rttlc1 + rttlc2
+	  sum_rttlc = sum_rttlc + rttlc
         end if
 
 
@@ -302,7 +310,7 @@
 	  rtevp = 0.
        if (rtwtr > 0.) then
 
-          aaa = evrch * pet_day / 1000.
+          aaa = evrch * pet_day / (1000.0 *nn)
 
 	      if (rchdep <= ch_d(jrch)) then
                rtevp = aaa * ch_l2(jrch) * 1000. * topw
@@ -341,7 +349,7 @@
 	      end if
 	      rtevp = rtevp1 + rtevp2
          end if
-
+         sum_rtevp = sum_rtevp + rtevp
 !! define flow parameters for current iteration
          flwin(jrch) = 0.
          flwout(jrch) = 0.
@@ -381,7 +389,9 @@
 
 !!      volinprev(jrch) = wtrin
 !!	qoutprev(jrch) = rtwtr
-
+      rttlc = sum_rttlc
+      rtevp = sum_rtevp
+      
       if (rtwtr < 0.) rtwtr = 0.
       if (rchstor(jrch) < 0.) rchstor(jrch) = 0.
 

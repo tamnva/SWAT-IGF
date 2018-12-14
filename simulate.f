@@ -162,10 +162,10 @@
        
         do i = id1, idlst                            !! begin daily loop
         
-        !! changed by Nguyen
-          diffuse_storage = 0.0
-          matrix_storage = 0.0
-          diffuse_recharge = 0.0
+        !! changed by Nguyen 
+          if ((curyr + i) > 2) matrix_storage = 0.0
+          conduit_storage = 0.0
+          conc_recharge = 0.0
 
           !screen print days of the year for subdaily runs (dt<60min)
           if (ievent>0.and.idt<60) then

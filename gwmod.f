@@ -90,7 +90,7 @@
       
       ! changed by Nguyen
       if((snam(ihru)(4:4) == "N") .or. (j > 1086)) then
-      diffuse_recharge = diffuse_recharge + 
+      conc_recharge = conc_recharge + 
      &  (1 - beta_n) * (sepbtm(j)+gwq_ru(j)+rchrg_karst)*hru_ha(ihru)*10
      
       rchrg(j) = (1.-gw_delaye(j))* beta_n *(sepbtm(j) + gwq_ru(j)+
@@ -116,10 +116,9 @@
       gwseep = rchrg(j) * rchrg_dp(j)
       deepst(j) = deepst(j) + gwseep
       
-!! changed by Nguyen (diffuse_storage in m3)
-
+!! changed by Nguyen (matrix_storage in m3)
       if ((snam(ihru)(4:4) == "N") .or. (j > 1086))then
-        diffuse_storage = diffuse_storage + 
+        matrix_storage = matrix_storage + 
      &                    hru_ha(ihru)* gwseep *  10 
       end if
       

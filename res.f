@@ -110,17 +110,8 @@
 	finsed = 0.
 	setsed = 0.
 	remsetsed = 0.
-
-
-        !! determine reservoir outflow
-        select case (iresco(jres))
-          case (3)                   !! use measured daily outflow
-            flw = 0.
-            read (350+jres,*) flw
-            resflwo = 86400. * flw + q26
-        end select
+      resflwo = 0.0
           
-
       return
  5000 format (f8.2)
       end

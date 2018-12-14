@@ -141,25 +141,24 @@
 	  
 !! changed by Nguyen
 
-      matrix_storage = matrix_storage + qtloss
+      conduit_storage = conduit_storage + qtloss
       
       if (jrch == s_num) then
       
       !convert part of infiltrated water from HRU to fast recharge
-      matrix_storage = matrix_storage + diffuse_recharge
+      conduit_storage = conduit_storage + conc_recharge
       
       
-      sflow = sflow * exp(-sday) +(1-exp(-sday))* diffuse_storage/86400
-      fflow = fflow * exp(-fday) +(1-exp(-fday))* (matrix_storage/86400
+      sflow = sflow * exp(-sday) +(1-exp(-sday))* matrix_storage/86400
+      fflow = fflow * exp(-fday) +(1-exp(-fday))* (conduit_storage/86400
      & + sflow)
       
       
       rtwtr = rtwtr + (fflow)*86400
       
-      tstor = tstor + matrix_storage + diffuse_storage
-     &     - (fflow)*86400
+      tstor = tstor + conduit_storage + matrix_storage - fflow*86400
      
-       write(2469,'(3(f20.2))') diffuse_storage, matrix_storage, tstor
+       write(2469,'(3(f20.2))') tstor
       ! delay of q is two day, infiltrated water will appear at spring at 3rd day
 !!      rtwtr = rtwtr + q_delay(1)
 !!      q_delay(1) = q_delay(2)
